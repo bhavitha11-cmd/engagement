@@ -19,7 +19,7 @@ export default function FinalSlide() {
         padding: '64px 24px',
         background: 'linear-gradient(to bottom, var(--cream) 0%, var(--cream-dark) 100%)',
         textAlign: 'center',
-        borderTop: '2px solid var(--gold)',
+        borderTop: '1px solid rgba(201, 148, 42, 0.25)',
       }}
     >
       <motion.div
@@ -40,56 +40,64 @@ export default function FinalSlide() {
           variants={scaleIn}
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '2rem',
-            color: 'var(--gold)',
-            marginBottom: '24px',
+            fontSize: '2.2rem',
+            color: 'var(--gold-dark)',
+            marginBottom: '20px',
             fontWeight: '600',
+            letterSpacing: '3px',
           }}
         >
-          B ✦ R
+          B & R
         </motion.div>
 
-        {/* Cursive Message */}
+        {/* Heading */}
         <motion.h2
           variants={fadeUp}
           style={{
             fontFamily: 'var(--font-script)',
-            fontSize: '3rem',
+            fontSize: '3.2rem',
             color: 'var(--text-dark)',
             fontWeight: 'normal',
             lineHeight: '1.2',
             marginBottom: '16px',
           }}
         >
-          See You There!
+          With Love & Gratitude
         </motion.h2>
 
         <motion.p
           variants={fadeUp}
           style={{
             fontFamily: 'var(--font-classic)',
-            fontSize: '1.1rem',
+            fontSize: '1.15rem',
             color: 'var(--text-medium)',
-            lineHeight: '1.5',
+            lineHeight: '1.6',
+            fontStyle: 'italic',
             marginBottom: '32px',
-            maxWidth: '300px',
+            maxWidth: '320px',
           }}
         >
-          Your presence and blessings will make our special day complete. We look forward to celebrating our new beginning with you.
+          Your presence, prayers, and heartfelt blessings are the greatest gift as we begin our new journey together.
         </motion.p>
 
-        {/* Divider */}
+        {/* Classic Diamond Divider */}
         <motion.div
           variants={fadeUp}
           style={{
-            width: '60px',
-            height: '1px',
-            background: 'var(--gold)',
-            marginBottom: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '12px',
+            width: '100%',
+            marginBottom: '36px',
           }}
-        />
+        >
+          <div style={{ width: '35px', height: '1px', background: 'linear-gradient(90deg, transparent, var(--gold))' }} />
+          <div style={{ width: '4px', height: '4px', background: 'var(--gold)', transform: 'rotate(45deg)' }} />
+          <div style={{ width: '35px', height: '1px', background: 'linear-gradient(90deg, var(--gold), transparent)' }} />
+        </motion.div>
 
-        {/* Hashtags */}
+        {/* Hashtag */}
         <motion.div
           variants={fadeUp}
           style={{
@@ -101,24 +109,25 @@ export default function FinalSlide() {
               fontFamily: 'var(--font-sans)',
               fontSize: '0.65rem',
               color: 'var(--text-medium)',
-              letterSpacing: '2px',
+              letterSpacing: '2.5px',
               textTransform: 'uppercase',
               display: 'block',
-              marginBottom: '8px',
+              marginBottom: '6px',
+              fontWeight: '500',
             }}
           >
-            Share the love
+            Celebrate With Us
           </span>
           <span
             style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: '1.15rem',
+              fontSize: '1.2rem',
               color: 'var(--gold-dark)',
               fontWeight: '600',
-              letterSpacing: '1px',
+              letterSpacing: '1.5px',
             }}
           >
-            #BhavithaRaja
+            #BhavithaAndRaja
           </span>
         </motion.div>
 
@@ -136,11 +145,11 @@ export default function FinalSlide() {
             textTransform: 'uppercase',
             cursor: 'pointer',
             padding: '8px 16px',
-            opacity: 0.7,
+            opacity: 0.75,
             transition: 'opacity 0.2s',
           }}
           onMouseEnter={(e) => (e.target.style.opacity = 1)}
-          onMouseLeave={(e) => (e.target.style.opacity = 0.7)}
+          onMouseLeave={(e) => (e.target.style.opacity = 0.75)}
         >
           Back to Top ↑
         </motion.button>

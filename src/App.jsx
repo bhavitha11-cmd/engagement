@@ -54,10 +54,10 @@ function App() {
   // Engagement Event details (Single Ceremony)
   const events = [
     {
-      label: 'THE BEGINNING OF FOREVER',
+      label: 'AUSPICIOUS CEREMONY',
       heading: 'Engagement Ceremony',
       headingColor: '#7a4e00', // Gold tone
-      description: 'Join us as we exchange rings and take our first steps toward a lifetime of love and togetherness.',
+      description: 'With the blessings of our elders and families, we warmly invite you to celebrate our engagement ceremony and shower your blessings upon us.',
       date: '15 November 2026',
       time: '9:55 AM onwards',
       venue: 'Kothapalli, Andhra Pradesh, India',

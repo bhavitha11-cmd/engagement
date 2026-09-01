@@ -22,17 +22,39 @@ export default function HeroSlide() {
     <section
       style={{
         position: 'relative',
-        height: '100svh',
+        height: '100dvh',
+        minHeight: '100svh',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         overflow: 'hidden',
-        background: '#000',
+        background: '#fdf8f0',
       }}
     >
-      {/* Direct Video - No poster image to prevent any static image opening */}
+      {/* Blurred Ambient Video Background to fill any screen aspect ratio seamlessly without black bars */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          filter: 'blur(25px) opacity(0.4)',
+          transform: 'scale(1.15)',
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+      >
+        <source src="/couple.mp4" type="video/mp4" />
+      </video>
+
+      {/* Main Sharp Video with 'contain' so 100% of the video is visible on ANY phone screen without cropping */}
       <video
         ref={videoRef}
         autoPlay
@@ -41,53 +63,56 @@ export default function HeroSlide() {
         preload="auto"
         onTimeUpdate={handleTimeUpdate}
         style={{
-          position: 'absolute',
-          inset: 0,
+          position: 'relative',
           width: '100%',
           height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center',
-          zIndex: 1,
-          background: '#000',
+          maxHeight: '100dvh',
+          objectFit: 'contain',
+          zIndex: 2,
         }}
       >
         <source src="/couple.mp4" type="video/mp4" />
       </video>
 
-      {/* Subtle Scroll Down Prompt */}
+      {/* Floating Pill Scroll Down Prompt */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: [0.4, 0.9, 0.4], y: [0, 6, 0] }}
+        animate={{ opacity: [0.6, 1, 0.6], y: [0, 4, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
         style={{
-          position: 'relative',
-          zIndex: 2,
-          marginBottom: '28px',
+          position: 'absolute',
+          bottom: '24px',
+          zIndex: 3,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: '2px',
           pointerEvents: 'none',
+          background: 'rgba(26, 8, 0, 0.5)',
+          backdropFilter: 'blur(8px)',
+          padding: '6px 16px',
+          borderRadius: '24px',
+          border: '1px solid rgba(255, 255, 255, 0.25)',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
         }}
       >
         <span
           style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: '0.65rem',
-            letterSpacing: '3px',
-            color: 'rgba(255, 255, 255, 0.85)',
+            fontSize: '0.6rem',
+            letterSpacing: '2.5px',
+            color: '#fff',
             textTransform: 'uppercase',
-            textShadow: '0 2px 6px rgba(0,0,0,0.7)',
+            fontWeight: '600',
           }}
         >
           Scroll Down
         </span>
         <span
           style={{
-            color: 'rgba(255, 255, 255, 0.85)',
-            fontSize: '1rem',
+            color: 'var(--gold-light)',
+            fontSize: '0.9rem',
             lineHeight: '1',
-            textShadow: '0 2px 6px rgba(0,0,0,0.7)',
           }}
         >
           ⌄

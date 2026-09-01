@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCountdown } from '../hooks/useCountdown';
-import { fadeUp, scaleIn } from '../animations';
+import { scaleIn } from '../animations';
 import ScratchCard from './ScratchCard';
 
 export default function CountdownSlide() {
@@ -11,14 +11,14 @@ export default function CountdownSlide() {
   const handleScratchComplete = () => {
     setTimeout(() => {
       setIsScratched(true);
-    }, 1000); // 1-second delay so the guest can see the revealed date first
+    }, 1000);
   };
 
   const timeUnits = [
     { label: 'Days', value: days },
     { label: 'Hours', value: hours },
-    { label: 'Mins', value: minutes },
-    { label: 'Secs', value: seconds },
+    { label: 'Minutes', value: minutes },
+    { label: 'Seconds', value: seconds },
   ];
 
   return (
@@ -57,8 +57,8 @@ export default function CountdownSlide() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at center, rgba(253, 248, 240, 0.45) 0%, rgba(253, 248, 240, 0.7) 100%)',
-          backdropFilter: 'blur(2px)',
+          background: 'radial-gradient(circle at center, rgba(253, 248, 240, 0.5) 0%, rgba(253, 248, 240, 0.75) 100%)',
+          backdropFilter: 'blur(3px)',
           zIndex: 1.5,
         }}
       />
@@ -79,12 +79,12 @@ export default function CountdownSlide() {
         {/* Save the Date Header */}
         <span
           style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.7rem',
+            fontFamily: 'var(--font-serif)',
+            fontSize: '0.85rem',
             color: 'var(--gold-dark)',
             letterSpacing: '4px',
             textTransform: 'uppercase',
-            marginBottom: '8px',
+            marginBottom: '4px',
             fontWeight: '600',
           }}
         >
@@ -98,16 +98,14 @@ export default function CountdownSlide() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.65rem',
+                fontFamily: 'var(--font-classic)',
+                fontSize: '0.95rem',
                 color: 'var(--text-medium)',
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                marginBottom: '16px',
-                fontWeight: '600',
+                fontStyle: 'italic',
+                marginBottom: '14px',
               }}
             >
-              Scratch to Reveal Date & Countdown
+              Scratch the card to reveal the date
             </motion.p>
           )}
 
@@ -128,7 +126,7 @@ export default function CountdownSlide() {
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.65rem',
                 color: 'var(--gold-dark)',
-                letterSpacing: '1.5px',
+                letterSpacing: '2px',
                 textTransform: 'uppercase',
                 marginTop: '4px',
                 fontWeight: '600',
@@ -143,7 +141,7 @@ export default function CountdownSlide() {
         <AnimatePresence>
           {isScratched && (
             <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              initial={{ opacity: 0, y: 25, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               style={{
@@ -151,27 +149,27 @@ export default function CountdownSlide() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                marginTop: '12px',
+                marginTop: '8px',
               }}
             >
               <h2
                 style={{
                   fontFamily: 'var(--font-script)',
-                  fontSize: '2.6rem',
+                  fontSize: '2.8rem',
                   color: 'var(--text-dark)',
                   fontWeight: 'normal',
                   lineHeight: '1.1',
                   marginBottom: '16px',
                 }}
               >
-                Counting Down...
+                The Countdown Begins
               </h2>
 
               {/* Countdown Grid (Frosted Glass Card) */}
               <div
                 style={{
                   width: '100%',
-                  padding: '16px 12px',
+                  padding: '16px 10px',
                   background: 'rgba(255, 255, 255, 0.65)',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(201, 148, 42, 0.25)',
@@ -192,23 +190,23 @@ export default function CountdownSlide() {
                       variants={scaleIn}
                       initial="hidden"
                       animate="visible"
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.08 }}
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: 'rgba(255, 255, 255, 0.85)',
+                        background: 'rgba(255, 255, 255, 0.88)',
                         padding: '12px 2px',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(201, 148, 42, 0.2)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                        borderRadius: '10px',
+                        border: '1px solid rgba(201, 148, 42, 0.18)',
+                        boxShadow: '0 2px 8px rgba(74, 34, 8, 0.03)',
                       }}
                     >
                       <span
                         style={{
                           fontFamily: 'var(--font-serif)',
-                          fontSize: '1.7rem',
+                          fontSize: '1.65rem',
                           fontWeight: '600',
                           color: 'var(--gold-dark)',
                           lineHeight: '1.1',
@@ -220,7 +218,7 @@ export default function CountdownSlide() {
                       <span
                         style={{
                           fontFamily: 'var(--font-sans)',
-                          fontSize: '0.55rem',
+                          fontSize: '0.52rem',
                           color: 'var(--text-medium)',
                           letterSpacing: '1px',
                           textTransform: 'uppercase',

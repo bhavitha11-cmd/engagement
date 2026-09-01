@@ -15,45 +15,45 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
     canvas.width = width;
     canvas.height = height;
 
-    // Rich metallic gold foil base
+    // Classic rich gold foil gradient
     const gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, '#B38728');
     gradient.addColorStop(0.2, '#FBF5B7');
-    gradient.addColorStop(0.4, '#DAA520');
-    gradient.addColorStop(0.6, '#AA771C');
+    gradient.addColorStop(0.45, '#DAA520');
+    gradient.addColorStop(0.7, '#AA771C');
     gradient.addColorStop(0.85, '#FBF5B7');
     gradient.addColorStop(1, '#8B6210');
 
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Subtle metallic stipple / foil texture
-    for (let i = 0; i < 400; i++) {
+    // Subtle metallic stipple foil texture
+    for (let i = 0; i < 350; i++) {
       const rx = Math.random() * width;
       const ry = Math.random() * height;
-      ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 255, 255, 0.15)' : 'rgba(74, 34, 8, 0.08)';
+      ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 255, 255, 0.18)' : 'rgba(74, 34, 8, 0.08)';
       ctx.fillRect(rx, ry, 1.5, 1.5);
     }
 
-    // Inner embossed border
+    // Classic double gold border
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.5;
     ctx.strokeRect(6, 6, width - 12, height - 12);
 
-    ctx.strokeStyle = 'rgba(139, 98, 16, 0.3)';
+    ctx.strokeStyle = 'rgba(139, 98, 16, 0.35)';
     ctx.lineWidth = 1;
-    ctx.strokeRect(8, 8, width - 16, height - 16);
+    ctx.strokeRect(9, 9, width - 18, height - 18);
 
-    // Text: "✨ SCRATCH TO REVEAL ✨"
+    // Clean luxury typography: "SCRATCH TO REVEAL"
     ctx.fillStyle = '#3d1c05';
-    ctx.font = '600 12px Montserrat, sans-serif';
+    ctx.font = '600 11px Montserrat, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.7)';
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 1;
-    ctx.shadowBlur = 2;
-    ctx.fillText('✨ SCRATCH TO REVEAL ✨', width / 2, height / 2);
+    ctx.shadowBlur = 1;
+    ctx.fillText('SCRATCH TO REVEAL DATE', width / 2, height / 2);
     ctx.shadowColor = 'transparent';
   }, [width, height]);
 
@@ -85,7 +85,7 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
     if (!ctx) return;
 
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.lineWidth = 32; // Realistic scratch brush thickness
+    ctx.lineWidth = 32;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 
@@ -104,7 +104,6 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
       const pixels = imgData.data;
       let clearCount = 0;
 
-      // Sample every 4th pixel for speed & accuracy
       for (let i = 3; i < pixels.length; i += 16) {
         if (pixels[i] < 128) {
           clearCount++;
@@ -114,8 +113,7 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
       const totalSampled = pixels.length / 16;
       const percent = (clearCount / totalSampled) * 100;
 
-      // Complete only once user actually scratches 40% of the surface
-      if (percent >= 40 && !scratched) {
+      if (percent >= 38 && !scratched) {
         setScratched(true);
         if (onComplete) {
           onComplete();
@@ -157,9 +155,9 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
         width,
         height,
         margin: '0 auto',
-        borderRadius: '16px',
+        borderRadius: '14px',
         overflow: 'hidden',
-        boxShadow: '0 8px 30px rgba(74, 34, 8, 0.12)',
+        boxShadow: '0 8px 24px rgba(74, 34, 8, 0.12)',
         userSelect: 'none',
       }}
     >
@@ -173,10 +171,10 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(135deg, #fffdfa 0%, #f7efe4 100%)',
-          border: '1.5px solid rgba(201, 148, 42, 0.4)',
-          borderRadius: '16px',
+          border: '1.5px solid rgba(201, 148, 42, 0.35)',
+          borderRadius: '14px',
           zIndex: 1,
-          boxShadow: 'inset 0 0 15px rgba(201, 148, 42, 0.08)',
+          boxShadow: 'inset 0 0 15px rgba(201, 148, 42, 0.06)',
         }}
       >
         {children}
@@ -191,7 +189,7 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
           width: '100%',
           height: '100%',
           zIndex: 2,
-          borderRadius: '16px',
+          borderRadius: '14px',
           opacity: scratched ? 0 : 1,
           pointerEvents: scratched ? 'none' : 'auto',
           transition: 'opacity 0.6s ease',

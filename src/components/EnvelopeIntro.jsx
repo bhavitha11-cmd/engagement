@@ -7,7 +7,6 @@ export default function EnvelopeIntro({ onComplete }) {
   const handleTap = () => {
     if (opened) return;
     setOpened(true);
-    // Smooth transition delay to allow the envelope flap & letter reveal animation to complete
     setTimeout(() => {
       onComplete();
     }, 1400);
@@ -18,12 +17,12 @@ export default function EnvelopeIntro({ onComplete }) {
       onClick={handleTap}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 1.05 }}
+      exit={{ opacity: 0, scale: 1.04 }}
       transition={{ duration: 0.6 }}
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'radial-gradient(ellipse at center, #fffcf7 0%, #f7efe2 60%, #ede0cf 100%)',
+        background: 'radial-gradient(ellipse at center, #fffdfa 0%, #f6eee2 60%, #e9decb 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -36,32 +35,31 @@ export default function EnvelopeIntro({ onComplete }) {
         WebkitTapHighlightColor: 'transparent',
       }}
     >
-      {/* Subtle Floating Sparkles in Background */}
-      {[...Array(6)].map((_, i) => (
+      {/* Soft Ambient Golden Dust in Background */}
+      {[...Array(5)].map((_, i) => (
         <motion.div
           key={i}
           initial={{
-            opacity: 0.2,
+            opacity: 0.15,
             y: Math.random() * 200 - 100,
-            x: Math.random() * 300 - 150,
-            scale: Math.random() * 0.5 + 0.5,
+            x: Math.random() * 260 - 130,
           }}
           animate={{
-            opacity: [0.2, 0.7, 0.2],
-            y: ['-10px', '10px', '-10px'],
+            opacity: [0.15, 0.5, 0.15],
+            y: ['-8px', '8px', '-8px'],
           }}
           transition={{
             repeat: Infinity,
-            duration: 3 + i,
+            duration: 4 + i,
             ease: 'easeInOut',
           }}
           style={{
             position: 'absolute',
-            width: '6px',
-            height: '6px',
+            width: '4px',
+            height: '4px',
             borderRadius: '50%',
             background: 'var(--gold)',
-            boxShadow: '0 0 10px var(--gold-light)',
+            boxShadow: '0 0 8px rgba(201, 148, 42, 0.4)',
             pointerEvents: 'none',
           }}
         />
@@ -71,35 +69,39 @@ export default function EnvelopeIntro({ onComplete }) {
       <motion.div
         animate={opened ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        style={{ textAlign: 'center', marginBottom: '36px' }}
+        style={{ textAlign: 'center', marginBottom: '32px' }}
       >
         <span
           style={{
-            color: 'var(--gold)',
-            fontSize: '1.4rem',
+            fontFamily: 'var(--font-serif)',
+            fontSize: '0.75rem',
+            letterSpacing: '4px',
+            color: 'var(--gold-dark)',
+            textTransform: 'uppercase',
+            fontWeight: '600',
             display: 'block',
             marginBottom: '6px',
           }}
         >
-          ✦ ॐ ✦
+          ॥ శ్రీరస్తు ॥
         </span>
         <h3
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '1.1rem',
-            letterSpacing: '5px',
+            fontSize: '1.05rem',
+            letterSpacing: '4px',
             color: 'var(--text-medium)',
             textTransform: 'uppercase',
-            fontWeight: '600',
+            fontWeight: '500',
             marginBottom: '8px',
           }}
         >
-          You Are Invited
+          Royal Invitation
         </h3>
         <div
           style={{
-            width: '50px',
-            height: '1.5px',
+            width: '45px',
+            height: '1px',
             background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
             margin: '0 auto',
           }}
@@ -110,13 +112,13 @@ export default function EnvelopeIntro({ onComplete }) {
       <motion.div
         animate={
           opened
-            ? { scale: [1, 1.03, 1.08], opacity: [1, 1, 0] }
-            : { y: [0, -8, 0] }
+            ? { scale: [1, 1.02, 1.06], opacity: [1, 1, 0] }
+            : { y: [0, -6, 0] }
         }
         transition={
           opened
             ? { duration: 1.3, ease: 'easeInOut' }
-            : { repeat: Infinity, duration: 3, ease: 'easeInOut' }
+            : { repeat: Infinity, duration: 3.2, ease: 'easeInOut' }
         }
         style={{
           position: 'relative',
@@ -130,7 +132,7 @@ export default function EnvelopeIntro({ onComplete }) {
           style={{
             position: 'absolute',
             inset: '10px 15px -10px 15px',
-            background: 'rgba(74, 34, 8, 0.18)',
+            background: 'rgba(74, 34, 8, 0.15)',
             filter: 'blur(16px)',
             borderRadius: '16px',
             zIndex: 0,
@@ -142,10 +144,10 @@ export default function EnvelopeIntro({ onComplete }) {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(145deg, #fdf8f0 0%, #f4e8d8 100%)',
+            background: 'linear-gradient(145deg, #fdf9f2 0%, #f4ebd9 100%)',
             borderRadius: '14px',
-            border: '1.5px solid rgba(201, 148, 42, 0.4)',
-            boxShadow: 'inset 0 0 20px rgba(201, 148, 42, 0.1)',
+            border: '1.5px solid rgba(201, 148, 42, 0.35)',
+            boxShadow: 'inset 0 0 20px rgba(201, 148, 42, 0.08)',
             zIndex: 1,
           }}
         />
@@ -161,10 +163,10 @@ export default function EnvelopeIntro({ onComplete }) {
           style={{
             position: 'absolute',
             inset: '12px 16px',
-            background: 'linear-gradient(135deg, #fffdf8 0%, #faefe1 100%)',
+            background: 'linear-gradient(135deg, #fffdfa 0%, #f8efe3 100%)',
             borderRadius: '10px',
-            border: '1px solid rgba(201, 148, 42, 0.5)',
-            boxShadow: '0 4px 15px rgba(74, 34, 8, 0.08)',
+            border: '1px solid rgba(201, 148, 42, 0.45)',
+            boxShadow: '0 4px 15px rgba(74, 34, 8, 0.06)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -190,7 +192,7 @@ export default function EnvelopeIntro({ onComplete }) {
           <span
             style={{
               fontFamily: 'var(--font-script)',
-              fontSize: '2rem',
+              fontSize: '2.1rem',
               color: 'var(--text-dark)',
               lineHeight: '1.1',
             }}
@@ -220,8 +222,8 @@ export default function EnvelopeIntro({ onComplete }) {
               height: 0,
               borderStyle: 'solid',
               borderWidth: '105px 0 105px 160px',
-              borderColor: 'transparent transparent transparent #ede0ce',
-              filter: 'drop-shadow(2px 0 4px rgba(74, 34, 8, 0.05))',
+              borderColor: 'transparent transparent transparent #ede2d2',
+              filter: 'drop-shadow(2px 0 4px rgba(74, 34, 8, 0.04))',
             }}
           />
           {/* Right Pocket Flap */}
@@ -234,8 +236,8 @@ export default function EnvelopeIntro({ onComplete }) {
               height: 0,
               borderStyle: 'solid',
               borderWidth: '105px 160px 105px 0',
-              borderColor: 'transparent #ede0ce transparent transparent',
-              filter: 'drop-shadow(-2px 0 4px rgba(74, 34, 8, 0.05))',
+              borderColor: 'transparent #ede2d2 transparent transparent',
+              filter: 'drop-shadow(-2px 0 4px rgba(74, 34, 8, 0.04))',
             }}
           />
           {/* Bottom Pocket Flap */}
@@ -248,21 +250,8 @@ export default function EnvelopeIntro({ onComplete }) {
               height: 0,
               borderStyle: 'solid',
               borderWidth: '0 160px 115px 160px',
-              borderColor: 'transparent transparent #f6ebd9 transparent',
-              filter: 'drop-shadow(0 -3px 8px rgba(74, 34, 8, 0.08))',
-            }}
-          />
-          {/* Delicate golden line along bottom flap edge */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '5px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '80px',
-              height: '1px',
-              background: 'var(--gold)',
-              opacity: 0.4,
+              borderColor: 'transparent transparent #f7eddc transparent',
+              filter: 'drop-shadow(0 -3px 8px rgba(74, 34, 8, 0.06))',
             }}
           />
         </div>
@@ -283,9 +272,9 @@ export default function EnvelopeIntro({ onComplete }) {
             height: 0,
             borderStyle: 'solid',
             borderWidth: '115px 160px 0 160px',
-            borderColor: '#f2e5d3 transparent transparent transparent',
+            borderColor: '#f3e6d5 transparent transparent transparent',
             transformOrigin: 'top center',
-            filter: 'drop-shadow(0 4px 8px rgba(74, 34, 8, 0.12))',
+            filter: 'drop-shadow(0 4px 8px rgba(74, 34, 8, 0.1))',
           }}
         />
 
@@ -293,11 +282,11 @@ export default function EnvelopeIntro({ onComplete }) {
         <AnimatePresence>
           {!opened && (
             <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: [1, 1.05, 1] }}
-              exit={{ scale: 0.3, opacity: 0 }}
+              initial={{ scale: 0.95 }}
+              animate={{ scale: [1, 1.04, 1] }}
+              exit={{ scale: 0.2, opacity: 0 }}
               transition={{
-                scale: { repeat: Infinity, duration: 2.2, ease: 'easeInOut' },
+                scale: { repeat: Infinity, duration: 2.5, ease: 'easeInOut' },
                 exit: { duration: 0.3 },
               }}
               style={{
@@ -305,12 +294,12 @@ export default function EnvelopeIntro({ onComplete }) {
                 top: '55%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '54px',
-                height: '54px',
+                width: '56px',
+                height: '56px',
                 borderRadius: '50%',
-                background: 'radial-gradient(circle at 35% 35%, #ffe8a0 0%, #c9942a 50%, #8B6210 100%)',
-                border: '2px solid rgba(255, 255, 255, 0.4)',
-                boxShadow: '0 6px 18px rgba(74, 34, 8, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.3)',
+                background: 'radial-gradient(circle at 35% 35%, #fff0b8 0%, #c9942a 55%, #7a4e00 100%)',
+                border: '1.5px solid rgba(255, 255, 255, 0.4)',
+                boxShadow: '0 6px 20px rgba(74, 34, 8, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.25)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -320,10 +309,10 @@ export default function EnvelopeIntro({ onComplete }) {
               {/* Inner Embossed Ring */}
               <div
                 style={{
-                  width: '42px',
-                  height: '42px',
+                  width: '44px',
+                  height: '44px',
                   borderRadius: '50%',
-                  border: '1px dashed rgba(255, 240, 200, 0.7)',
+                  border: '1px solid rgba(255, 245, 220, 0.65)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -334,12 +323,12 @@ export default function EnvelopeIntro({ onComplete }) {
                     fontFamily: 'var(--font-serif)',
                     fontSize: '0.85rem',
                     fontWeight: '700',
-                    color: '#4a2208',
+                    color: '#3d1c05',
                     letterSpacing: '1px',
-                    textShadow: '0 1px 1px rgba(255, 255, 255, 0.6)',
+                    textShadow: '0 1px 1px rgba(255, 255, 255, 0.5)',
                   }}
                 >
-                  B✦R
+                  B & R
                 </span>
               </div>
             </motion.div>
@@ -351,23 +340,23 @@ export default function EnvelopeIntro({ onComplete }) {
       <motion.div
         animate={
           opened
-            ? { opacity: 0, y: 20 }
-            : { opacity: [0.6, 1, 0.6], y: [0, 4, 0] }
+            ? { opacity: 0, y: 15 }
+            : { opacity: [0.75, 1, 0.75], y: [0, 3, 0] }
         }
         transition={
           opened
             ? { duration: 0.3 }
-            : { repeat: Infinity, duration: 2, ease: 'easeInOut' }
+            : { repeat: Infinity, duration: 2.2, ease: 'easeInOut' }
         }
         style={{
-          marginTop: '44px',
+          marginTop: '42px',
           textAlign: 'center',
         }}
       >
         <div
           style={{
-            background: 'linear-gradient(135deg, rgba(201, 148, 42, 0.15) 0%, rgba(201, 148, 42, 0.05) 100%)',
-            border: '1px solid rgba(201, 148, 42, 0.35)',
+            background: 'linear-gradient(135deg, rgba(201, 148, 42, 0.12) 0%, rgba(201, 148, 42, 0.04) 100%)',
+            border: '1px solid rgba(201, 148, 42, 0.3)',
             padding: '10px 24px',
             borderRadius: '24px',
             backdropFilter: 'blur(4px)',
@@ -376,14 +365,14 @@ export default function EnvelopeIntro({ onComplete }) {
           <span
             style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.75rem',
+              fontSize: '0.7rem',
               letterSpacing: '3px',
               color: 'var(--text-medium)',
               textTransform: 'uppercase',
               fontWeight: '600',
             }}
           >
-            ✨ Tap to Open Invitation ✨
+            Tap to Open Invitation
           </span>
         </div>
       </motion.div>

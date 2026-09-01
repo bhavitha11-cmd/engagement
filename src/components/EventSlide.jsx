@@ -24,7 +24,7 @@ export default function EventSlide({
         justifyContent: 'center',
         padding: '64px 24px',
         backgroundColor: alternateBg ? '#f6efe6' : 'var(--cream)',
-        borderBottom: '1px solid rgba(201, 148, 42, 0.1)',
+        borderBottom: '1px solid rgba(201, 148, 42, 0.12)',
       }}
     >
       <motion.div
@@ -45,14 +45,13 @@ export default function EventSlide({
         <motion.span
           variants={fadeUp}
           style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.65rem',
-            color: 'var(--text-medium)',
-            letterSpacing: '3px',
+            fontFamily: 'var(--font-serif)',
+            fontSize: '0.8rem',
+            color: 'var(--gold-dark)',
+            letterSpacing: '4px',
             textTransform: 'uppercase',
-            marginBottom: '12px',
-            fontWeight: '500',
-            opacity: 0.8,
+            marginBottom: '10px',
+            fontWeight: '600',
           }}
         >
           {label}
@@ -63,7 +62,7 @@ export default function EventSlide({
           variants={fadeUp}
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '2.5rem',
+            fontSize: '2.4rem',
             color: headingColor,
             fontWeight: '600',
             lineHeight: '1.2',
@@ -75,21 +74,21 @@ export default function EventSlide({
           {heading}
         </motion.h2>
 
-        {/* Ornament */}
+        {/* Classic Diamond Divider */}
         <motion.div
           variants={fadeUp}
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '8px',
+            gap: '12px',
             width: '100%',
             marginBottom: '24px',
           }}
         >
-          <div style={{ width: '30px', height: '1px', background: 'var(--gold)', opacity: 0.5 }} />
-          <span style={{ color: 'var(--gold)', fontSize: '0.8rem' }}>✦</span>
-          <div style={{ width: '30px', height: '1px', background: 'var(--gold)', opacity: 0.5 }} />
+          <div style={{ width: '40px', height: '1px', background: 'linear-gradient(90deg, transparent, var(--gold))' }} />
+          <div style={{ width: '5px', height: '5px', background: 'var(--gold)', transform: 'rotate(45deg)' }} />
+          <div style={{ width: '40px', height: '1px', background: 'linear-gradient(90deg, var(--gold), transparent)' }} />
         </motion.div>
 
         {/* Description */}
@@ -97,12 +96,12 @@ export default function EventSlide({
           variants={fadeUp}
           style={{
             fontFamily: 'var(--font-classic)',
-            fontSize: '1.05rem',
+            fontSize: '1.1rem',
             color: 'var(--text-medium)',
-            lineHeight: '1.5',
+            lineHeight: '1.6',
             fontStyle: 'italic',
             marginBottom: '32px',
-            maxWidth: '300px',
+            maxWidth: '320px',
           }}
         >
           {description}
@@ -113,9 +112,9 @@ export default function EventSlide({
           variants={fadeUp}
           style={{
             width: '100%',
-            background: 'rgba(255, 255, 255, 0.55)',
-            backdropFilter: 'blur(4px)',
-            border: '1px solid rgba(201, 148, 42, 0.15)',
+            background: 'rgba(255, 255, 255, 0.65)',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(201, 148, 42, 0.25)',
             borderRadius: '16px',
             padding: '24px 20px',
             boxShadow: '0 8px 24px rgba(74, 34, 8, 0.04)',
@@ -128,21 +127,21 @@ export default function EventSlide({
             <span
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.6rem',
+                fontSize: '0.65rem',
                 color: 'var(--gold-dark)',
-                letterSpacing: '1.5px',
+                letterSpacing: '2px',
                 textTransform: 'uppercase',
                 display: 'block',
                 marginBottom: '4px',
                 fontWeight: '600',
               }}
             >
-              When
+              Date & Time
             </span>
             <span
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1.2rem',
+                fontSize: '1.25rem',
                 color: 'var(--text-dark)',
                 fontWeight: '600',
               }}
@@ -152,7 +151,7 @@ export default function EventSlide({
             <span
               style={{
                 fontFamily: 'var(--font-classic)',
-                fontSize: '0.95rem',
+                fontSize: '1rem',
                 color: 'var(--text-medium)',
                 marginLeft: '8px',
               }}
@@ -166,21 +165,21 @@ export default function EventSlide({
             <span
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.6rem',
+                fontSize: '0.65rem',
                 color: 'var(--gold-dark)',
-                letterSpacing: '1.5px',
+                letterSpacing: '2px',
                 textTransform: 'uppercase',
                 display: 'block',
                 marginBottom: '4px',
                 fontWeight: '600',
               }}
             >
-              Where
+              Venue
             </span>
             <span
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1.15rem',
+                fontSize: '1.2rem',
                 color: 'var(--text-dark)',
                 fontWeight: '600',
                 lineHeight: '1.3',
@@ -201,7 +200,7 @@ export default function EventSlide({
           className="btn-gold"
           style={{ width: '100%', maxWidth: '280px' }}
         >
-          View on Google Maps
+          Get Directions
         </motion.a>
       </motion.div>
     </section>
