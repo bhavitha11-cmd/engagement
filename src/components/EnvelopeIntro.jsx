@@ -1,0 +1,392 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+export default function EnvelopeIntro({ onComplete }) {
+  const [opened, setOpened] = useState(false);
+
+  const handleTap = () => {
+    if (opened) return;
+    setOpened(true);
+    // Smooth transition delay to allow the envelope flap & letter reveal animation to complete
+    setTimeout(() => {
+      onComplete();
+    }, 1400);
+  };
+
+  return (
+    <motion.div
+      onClick={handleTap}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 1.05 }}
+      transition={{ duration: 0.6 }}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'radial-gradient(ellipse at center, #fffcf7 0%, #f7efe2 60%, #ede0cf 100%)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        zIndex: 99999,
+        padding: '24px',
+        overflow: 'hidden',
+        userSelect: 'none',
+        WebkitTapHighlightColor: 'transparent',
+      }}
+    >
+      {/* Subtle Floating Sparkles in Background */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{
+            opacity: 0.2,
+            y: Math.random() * 200 - 100,
+            x: Math.random() * 300 - 150,
+            scale: Math.random() * 0.5 + 0.5,
+          }}
+          animate={{
+            opacity: [0.2, 0.7, 0.2],
+            y: ['-10px', '10px', '-10px'],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 3 + i,
+            ease: 'easeInOut',
+          }}
+          style={{
+            position: 'absolute',
+            width: '6px',
+            height: '6px',
+            borderRadius: '50%',
+            background: 'var(--gold)',
+            boxShadow: '0 0 10px var(--gold-light)',
+            pointerEvents: 'none',
+          }}
+        />
+      ))}
+
+      {/* Header / Title */}
+      <motion.div
+        animate={opened ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        style={{ textAlign: 'center', marginBottom: '36px' }}
+      >
+        <span
+          style={{
+            color: 'var(--gold)',
+            fontSize: '1.4rem',
+            display: 'block',
+            marginBottom: '6px',
+          }}
+        >
+          ✦ ॐ ✦
+        </span>
+        <h3
+          style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: '1.1rem',
+            letterSpacing: '5px',
+            color: 'var(--text-medium)',
+            textTransform: 'uppercase',
+            fontWeight: '600',
+            marginBottom: '8px',
+          }}
+        >
+          You Are Invited
+        </h3>
+        <div
+          style={{
+            width: '50px',
+            height: '1.5px',
+            background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
+            margin: '0 auto',
+          }}
+        />
+      </motion.div>
+
+      {/* 3D Interactive Royal Envelope Container */}
+      <motion.div
+        animate={
+          opened
+            ? { scale: [1, 1.03, 1.08], opacity: [1, 1, 0] }
+            : { y: [0, -8, 0] }
+        }
+        transition={
+          opened
+            ? { duration: 1.3, ease: 'easeInOut' }
+            : { repeat: Infinity, duration: 3, ease: 'easeInOut' }
+        }
+        style={{
+          position: 'relative',
+          width: '320px',
+          height: '210px',
+          perspective: '1000px',
+        }}
+      >
+        {/* Envelope Outer Shadow */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: '10px 15px -10px 15px',
+            background: 'rgba(74, 34, 8, 0.18)',
+            filter: 'blur(16px)',
+            borderRadius: '16px',
+            zIndex: 0,
+          }}
+        />
+
+        {/* Envelope Back Base */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(145deg, #fdf8f0 0%, #f4e8d8 100%)',
+            borderRadius: '14px',
+            border: '1.5px solid rgba(201, 148, 42, 0.4)',
+            boxShadow: 'inset 0 0 20px rgba(201, 148, 42, 0.1)',
+            zIndex: 1,
+          }}
+        />
+
+        {/* Inner Card that slides out when opened */}
+        <motion.div
+          animate={
+            opened
+              ? { y: -95, opacity: 1 }
+              : { y: 0, opacity: 0.95 }
+          }
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            position: 'absolute',
+            inset: '12px 16px',
+            background: 'linear-gradient(135deg, #fffdf8 0%, #faefe1 100%)',
+            borderRadius: '10px',
+            border: '1px solid rgba(201, 148, 42, 0.5)',
+            boxShadow: '0 4px 15px rgba(74, 34, 8, 0.08)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            textAlign: 'center',
+            zIndex: 2,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.55rem',
+              letterSpacing: '2.5px',
+              color: 'var(--gold-dark)',
+              textTransform: 'uppercase',
+              fontWeight: '600',
+              marginBottom: '4px',
+            }}
+          >
+            The Engagement of
+          </span>
+          <span
+            style={{
+              fontFamily: 'var(--font-script)',
+              fontSize: '2rem',
+              color: 'var(--text-dark)',
+              lineHeight: '1.1',
+            }}
+          >
+            Bhavitha & Raja
+          </span>
+        </motion.div>
+
+        {/* Envelope Pocket (Front bottom triangles) */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: '14px',
+            overflow: 'hidden',
+            zIndex: 3,
+            pointerEvents: 'none',
+          }}
+        >
+          {/* Left Pocket Flap */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: 0,
+              height: 0,
+              borderStyle: 'solid',
+              borderWidth: '105px 0 105px 160px',
+              borderColor: 'transparent transparent transparent #ede0ce',
+              filter: 'drop-shadow(2px 0 4px rgba(74, 34, 8, 0.05))',
+            }}
+          />
+          {/* Right Pocket Flap */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              width: 0,
+              height: 0,
+              borderStyle: 'solid',
+              borderWidth: '105px 160px 105px 0',
+              borderColor: 'transparent #ede0ce transparent transparent',
+              filter: 'drop-shadow(-2px 0 4px rgba(74, 34, 8, 0.05))',
+            }}
+          />
+          {/* Bottom Pocket Flap */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: 0,
+              height: 0,
+              borderStyle: 'solid',
+              borderWidth: '0 160px 115px 160px',
+              borderColor: 'transparent transparent #f6ebd9 transparent',
+              filter: 'drop-shadow(0 -3px 8px rgba(74, 34, 8, 0.08))',
+            }}
+          />
+          {/* Delicate golden line along bottom flap edge */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '5px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '80px',
+              height: '1px',
+              background: 'var(--gold)',
+              opacity: 0.4,
+            }}
+          />
+        </div>
+
+        {/* Envelope Top Triangular Flap (Folds Open in 3D) */}
+        <motion.div
+          animate={
+            opened
+              ? { rotateX: 180, zIndex: 1 }
+              : { rotateX: 0, zIndex: 4 }
+          }
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: 0,
+            height: 0,
+            borderStyle: 'solid',
+            borderWidth: '115px 160px 0 160px',
+            borderColor: '#f2e5d3 transparent transparent transparent',
+            transformOrigin: 'top center',
+            filter: 'drop-shadow(0 4px 8px rgba(74, 34, 8, 0.12))',
+          }}
+        />
+
+        {/* Royal Gold Wax Seal */}
+        <AnimatePresence>
+          {!opened && (
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: [1, 1.05, 1] }}
+              exit={{ scale: 0.3, opacity: 0 }}
+              transition={{
+                scale: { repeat: Infinity, duration: 2.2, ease: 'easeInOut' },
+                exit: { duration: 0.3 },
+              }}
+              style={{
+                position: 'absolute',
+                top: '55%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '54px',
+                height: '54px',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle at 35% 35%, #ffe8a0 0%, #c9942a 50%, #8B6210 100%)',
+                border: '2px solid rgba(255, 255, 255, 0.4)',
+                boxShadow: '0 6px 18px rgba(74, 34, 8, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 5,
+              }}
+            >
+              {/* Inner Embossed Ring */}
+              <div
+                style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '50%',
+                  border: '1px dashed rgba(255, 240, 200, 0.7)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: '0.85rem',
+                    fontWeight: '700',
+                    color: '#4a2208',
+                    letterSpacing: '1px',
+                    textShadow: '0 1px 1px rgba(255, 255, 255, 0.6)',
+                  }}
+                >
+                  B✦R
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
+      {/* Tap Instruction Button */}
+      <motion.div
+        animate={
+          opened
+            ? { opacity: 0, y: 20 }
+            : { opacity: [0.6, 1, 0.6], y: [0, 4, 0] }
+        }
+        transition={
+          opened
+            ? { duration: 0.3 }
+            : { repeat: Infinity, duration: 2, ease: 'easeInOut' }
+        }
+        style={{
+          marginTop: '44px',
+          textAlign: 'center',
+        }}
+      >
+        <div
+          style={{
+            background: 'linear-gradient(135deg, rgba(201, 148, 42, 0.15) 0%, rgba(201, 148, 42, 0.05) 100%)',
+            border: '1px solid rgba(201, 148, 42, 0.35)',
+            padding: '10px 24px',
+            borderRadius: '24px',
+            backdropFilter: 'blur(4px)',
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              letterSpacing: '3px',
+              color: 'var(--text-medium)',
+              textTransform: 'uppercase',
+              fontWeight: '600',
+            }}
+          >
+            ✨ Tap to Open Invitation ✨
+          </span>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
