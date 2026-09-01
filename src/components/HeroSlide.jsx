@@ -28,33 +28,12 @@ export default function HeroSlide() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         overflow: 'hidden',
         background: '#fdf8f0',
       }}
     >
-      {/* Blurred Ambient Video Background to fill any screen aspect ratio seamlessly without black bars */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          filter: 'blur(25px) opacity(0.4)',
-          transform: 'scale(1.15)',
-          zIndex: 1,
-          pointerEvents: 'none',
-        }}
-      >
-        <source src="/couple.mp4" type="video/mp4" />
-      </video>
-
-      {/* Main Sharp Video with 'contain' so 100% of the video is visible on ANY phone screen without cropping */}
+      {/* Edge-to-Edge Fullscreen Video */}
       <video
         ref={videoRef}
         autoPlay
@@ -63,34 +42,35 @@ export default function HeroSlide() {
         preload="auto"
         onTimeUpdate={handleTimeUpdate}
         style={{
-          position: 'relative',
+          position: 'absolute',
+          inset: 0,
           width: '100%',
           height: '100%',
-          maxHeight: '100dvh',
-          objectFit: 'contain',
-          zIndex: 2,
+          objectFit: 'cover',
+          objectPosition: 'center center',
+          zIndex: 1,
         }}
       >
         <source src="/couple.mp4" type="video/mp4" />
       </video>
 
-      {/* Floating Pill Scroll Down Prompt */}
+      {/* Floating Scroll Down Prompt */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: [0.6, 1, 0.6], y: [0, 4, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
         style={{
-          position: 'absolute',
-          bottom: '24px',
-          zIndex: 3,
+          position: 'relative',
+          zIndex: 2,
+          marginBottom: '28px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: '2px',
           pointerEvents: 'none',
-          background: 'rgba(26, 8, 0, 0.5)',
+          background: 'rgba(26, 8, 0, 0.45)',
           backdropFilter: 'blur(8px)',
-          padding: '6px 16px',
+          padding: '6px 18px',
           borderRadius: '24px',
           border: '1px solid rgba(255, 255, 255, 0.25)',
           boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
@@ -99,7 +79,7 @@ export default function HeroSlide() {
         <span
           style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: '0.6rem',
+            fontSize: '0.62rem',
             letterSpacing: '2.5px',
             color: '#fff',
             textTransform: 'uppercase',
@@ -111,7 +91,7 @@ export default function HeroSlide() {
         <span
           style={{
             color: 'var(--gold-light)',
-            fontSize: '0.9rem',
+            fontSize: '0.85rem',
             lineHeight: '1',
           }}
         >

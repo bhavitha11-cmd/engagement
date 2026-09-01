@@ -51,7 +51,7 @@ body {
 /* Mobile-First Centered Container */
 #root {
   width: 100%;
-  max-width: 430px; /* iPhone 14 Pro Max width */
+  max-width: 480px;
   min-height: 100vh;
   min-height: 100svh;
   margin: 0 auto;
@@ -61,6 +61,16 @@ body {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  body {
+    background-color: var(--cream);
+  }
+  #root {
+    max-width: 100vw;
+    box-shadow: none;
+  }
 }
 
 /* Premium Gold Shimmer text effect */
