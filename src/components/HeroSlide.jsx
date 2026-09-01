@@ -28,12 +28,12 @@ export default function HeroSlide() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         overflow: 'hidden',
-        background: '#fdf8f0',
+        background: '#fdf8f0', // Exact match with the video background
       }}
     >
-      {/* Edge-to-Edge Fullscreen Video */}
+      {/* Video fully contained so bells, couple, and temple have full breathing room */}
       <video
         ref={videoRef}
         autoPlay
@@ -42,57 +42,53 @@ export default function HeroSlide() {
         preload="auto"
         onTimeUpdate={handleTimeUpdate}
         style={{
-          position: 'absolute',
-          inset: 0,
           width: '100%',
           height: '100%',
-          objectFit: 'cover',
+          maxHeight: '100dvh',
+          objectFit: 'contain',
           objectPosition: 'center center',
           zIndex: 1,
+          display: 'block',
         }}
       >
         <source src="/couple.mp4" type="video/mp4" />
       </video>
 
-      {/* Floating Scroll Down Prompt */}
+      {/* Minimalist discreet scroll indicator placed right at bottom without blocking the couple */}
       <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: [0.6, 1, 0.6], y: [0, 4, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0.4, 0.9, 0.4], y: [0, 4, 0] }}
+        transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
         style={{
-          position: 'relative',
+          position: 'absolute',
+          bottom: '8px',
           zIndex: 2,
-          marginBottom: '28px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '2px',
           pointerEvents: 'none',
-          background: 'rgba(26, 8, 0, 0.45)',
-          backdropFilter: 'blur(8px)',
-          padding: '6px 18px',
-          borderRadius: '24px',
-          border: '1px solid rgba(255, 255, 255, 0.25)',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
         }}
       >
         <span
           style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: '0.62rem',
-            letterSpacing: '2.5px',
-            color: '#fff',
+            fontSize: '0.52rem',
+            letterSpacing: '2px',
+            color: 'var(--text-medium)',
             textTransform: 'uppercase',
             fontWeight: '600',
+            opacity: 0.75,
+            textShadow: '0 1px 3px rgba(255, 255, 255, 0.9)',
           }}
         >
-          Scroll Down
+          Scroll
         </span>
         <span
           style={{
-            color: 'var(--gold-light)',
+            color: 'var(--gold-dark)',
             fontSize: '0.85rem',
-            lineHeight: '1',
+            lineHeight: '0.9',
+            textShadow: '0 1px 3px rgba(255, 255, 255, 0.9)',
           }}
         >
           ⌄
