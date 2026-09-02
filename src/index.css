@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root {
   --gold: #c9942a;
@@ -10,10 +11,10 @@
   --text-medium: #4a2208;
   --text-light: #fdf8f0;
   
-  --font-serif: 'Cormorant Garamond', serif;
-  --font-classic: 'EB Garamond', serif;
+  --font-serif: 'Cinzel', 'Cormorant Garamond', serif;
+  --font-classic: 'Glacial Indifference', 'EB Garamond', sans-serif;
   --font-script: 'Great Vibes', cursive;
-  --font-sans: 'Montserrat', sans-serif;
+  --font-sans: 'Glacial Indifference', 'Montserrat', sans-serif;
 }
 
 /* Global Reset */
@@ -24,7 +25,7 @@
 }
 
 body {
-  background-color: #0d0602; /* Rich dark background outside mobile boundary on desktop */
+  background: radial-gradient(circle at 50% 30%, #251206 0%, #0c0502 100%);
   font-family: var(--font-classic);
   color: var(--text-dark);
   min-height: 100vh;
@@ -58,14 +59,14 @@ body {
   background-color: var(--cream);
   position: relative;
   overflow-x: hidden;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.85);
   display: flex;
   flex-direction: column;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 540px) {
   body {
-    background-color: var(--cream);
+    background: var(--cream);
   }
   #root {
     max-width: 100vw;

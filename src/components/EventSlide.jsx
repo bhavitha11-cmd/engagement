@@ -23,16 +23,47 @@ export default function EventSlide({
         alignItems: 'center',
         justifyContent: 'center',
         padding: '64px 24px',
-        backgroundColor: alternateBg ? '#f6efe6' : 'var(--cream)',
-        borderBottom: '1px solid rgba(201, 148, 42, 0.12)',
+        overflow: 'hidden',
+        backgroundColor: 'var(--cream)',
+        borderBottom: '1px solid rgba(201, 148, 42, 0.15)',
       }}
     >
+      {/* Clean Mandala Theme Background */}
+      <img
+        src="/mandala_bg.jpg"
+        alt="Mandala Background"
+        loading="lazy"
+        decoding="async"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center center',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Subtle soft veil for flawless card contrast */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(253, 248, 240, 0.35) 0%, rgba(253, 248, 240, 0.1) 100%)',
+          zIndex: 1.5,
+          pointerEvents: 'none',
+        }}
+      />
+
       <motion.div
         variants={stagger}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true }}
         style={{
+          position: 'relative',
+          zIndex: 2,
           width: '100%',
           maxWidth: '360px',
           display: 'flex',
@@ -122,8 +153,8 @@ export default function EventSlide({
             marginBottom: '32px',
           }}
         >
-          {/* Date */}
-          <div style={{ marginBottom: '16px' }}>
+          {/* Muhurtham */}
+          <div style={{ marginBottom: '18px' }}>
             <span
               style={{
                 fontFamily: 'var(--font-sans)',
@@ -136,28 +167,29 @@ export default function EventSlide({
                 fontWeight: '600',
               }}
             >
-              Date & Time
+              Auspicious Muhurtham
             </span>
-            <span
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '1.25rem',
-                color: 'var(--text-dark)',
-                fontWeight: '600',
-              }}
-            >
-              {date}
-            </span>
-            <span
-              style={{
-                fontFamily: 'var(--font-classic)',
-                fontSize: '1rem',
-                color: 'var(--text-medium)',
-                marginLeft: '8px',
-              }}
-            >
-              — {time}
-            </span>
+            <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: '6px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.25rem',
+                  color: 'var(--text-dark)',
+                  fontWeight: '600',
+                }}
+              >
+                Sunday, {date}
+              </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-classic)',
+                  fontSize: '1rem',
+                  color: 'var(--text-medium)',
+                }}
+              >
+                at {time}
+              </span>
+            </div>
           </div>
 
           {/* Venue */}

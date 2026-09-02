@@ -32,13 +32,13 @@ export default function CountdownSlide() {
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        padding: '32px 20px',
+        padding: '40px 16px',
       }}
     >
-      {/* Background image */}
+      {/* Lotus & Mandala Theme Background */}
       <img
-        src="/couple2.png"
-        alt="Countdown Background"
+        src="/lotus_bg.jpg"
+        alt="Lotus Theme Background"
         loading="eager"
         fetchPriority="high"
         decoding="async"
@@ -48,22 +48,23 @@ export default function CountdownSlide() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
+          objectPosition: 'center center',
           zIndex: 1,
         }}
       />
 
-      {/* Light elegant frosted veil over background */}
+      {/* Gentle translucent wash ensuring crisp text readability while preserving lotus artwork */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at center, rgba(253, 248, 240, 0.5) 0%, rgba(253, 248, 240, 0.75) 100%)',
-          backdropFilter: 'blur(3px)',
+          background: 'radial-gradient(ellipse at 50% 45%, rgba(253, 248, 240, 0.4) 0%, rgba(253, 248, 240, 0.1) 100%)',
           zIndex: 1.5,
+          pointerEvents: 'none',
         }}
       />
 
-      {/* Main Content Container */}
+      {/* Main Content Container centered in the middle */}
       <div
         style={{
           position: 'relative',
@@ -80,19 +81,19 @@ export default function CountdownSlide() {
         <span
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '0.85rem',
+            fontSize: '0.9rem',
             color: 'var(--gold-dark)',
             letterSpacing: '4px',
             textTransform: 'uppercase',
-            marginBottom: '4px',
+            marginBottom: '6px',
             fontWeight: '600',
           }}
         >
           Save the Date
         </span>
 
-        {/* Scratch Card Section */}
-        <div style={{ width: '100%', marginTop: '12px', marginBottom: '20px' }}>
+        {/* Scratch Card Section - Bigger and Centered */}
+        <div style={{ width: '100%', marginTop: '8px', marginBottom: '14px' }}>
           {!isScratched && (
             <motion.p
               initial={{ opacity: 0 }}
@@ -102,18 +103,18 @@ export default function CountdownSlide() {
                 fontSize: '0.95rem',
                 color: 'var(--text-medium)',
                 fontStyle: 'italic',
-                marginBottom: '14px',
+                marginBottom: '12px',
               }}
             >
               Scratch the card to reveal the date
             </motion.p>
           )}
 
-          <ScratchCard width={300} height={95} onComplete={handleScratchComplete}>
+          <ScratchCard width={330} height={118} onComplete={handleScratchComplete}>
             <span
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1.4rem',
+                fontSize: '1.55rem',
                 fontWeight: '600',
                 color: 'var(--text-dark)',
                 letterSpacing: '1px',
@@ -124,15 +125,15 @@ export default function CountdownSlide() {
             <span
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.65rem',
+                fontSize: '0.72rem',
                 color: 'var(--gold-dark)',
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
-                marginTop: '4px',
+                marginTop: '6px',
                 fontWeight: '600',
               }}
             >
-              9:55 AM onwards
+              Sunday • 9:55 AM onwards
             </span>
           </ScratchCard>
         </div>
@@ -141,25 +142,25 @@ export default function CountdownSlide() {
         <AnimatePresence>
           {isScratched && (
             <motion.div
-              initial={{ opacity: 0, y: 25, scale: 0.96 }}
+              initial={{ opacity: 0, y: 15, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                marginTop: '8px',
+                marginTop: '4px',
               }}
             >
               <h2
                 style={{
                   fontFamily: 'var(--font-script)',
-                  fontSize: '2.8rem',
+                  fontSize: '2.2rem',
                   color: 'var(--text-dark)',
                   fontWeight: 'normal',
                   lineHeight: '1.1',
-                  marginBottom: '16px',
+                  marginBottom: '10px',
                 }}
               >
                 The Countdown Begins
@@ -169,12 +170,12 @@ export default function CountdownSlide() {
               <div
                 style={{
                   width: '100%',
-                  padding: '16px 10px',
-                  background: 'rgba(255, 255, 255, 0.65)',
-                  backdropFilter: 'blur(12px)',
+                  padding: '12px 8px',
+                  background: 'rgba(255, 255, 255, 0.7)',
+                  backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(201, 148, 42, 0.25)',
                   borderRadius: '16px',
-                  boxShadow: '0 10px 30px rgba(74, 34, 8, 0.08)',
+                  boxShadow: '0 8px 24px rgba(74, 34, 8, 0.06)',
                 }}
               >
                 <div

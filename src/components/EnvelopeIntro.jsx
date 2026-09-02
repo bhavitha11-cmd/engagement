@@ -74,30 +74,16 @@ export default function EnvelopeIntro({ onComplete }) {
         <span
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '0.75rem',
-            letterSpacing: '4px',
+            fontSize: '1rem',
+            letterSpacing: '3px',
             color: 'var(--gold-dark)',
-            textTransform: 'uppercase',
             fontWeight: '600',
             display: 'block',
-            marginBottom: '6px',
+            marginBottom: '8px',
           }}
         >
           ॥ శ్రీరస్తు ॥
         </span>
-        <h3
-          style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1.05rem',
-            letterSpacing: '4px',
-            color: 'var(--text-medium)',
-            textTransform: 'uppercase',
-            fontWeight: '500',
-            marginBottom: '8px',
-          }}
-        >
-          Royal Invitation
-        </h3>
         <div
           style={{
             width: '45px',
@@ -291,14 +277,14 @@ export default function EnvelopeIntro({ onComplete }) {
               }}
               style={{
                 position: 'absolute',
-                top: '55%',
+                top: '54%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '56px',
-                height: '56px',
+                width: '60px',
+                height: '60px',
                 borderRadius: '50%',
                 background: 'radial-gradient(circle at 35% 35%, #fff0b8 0%, #c9942a 55%, #7a4e00 100%)',
-                border: '1.5px solid rgba(255, 255, 255, 0.4)',
+                border: '1.5px solid rgba(255, 255, 255, 0.45)',
                 boxShadow: '0 6px 20px rgba(74, 34, 8, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.25)',
                 display: 'flex',
                 alignItems: 'center',
@@ -309,8 +295,8 @@ export default function EnvelopeIntro({ onComplete }) {
               {/* Inner Embossed Ring */}
               <div
                 style={{
-                  width: '44px',
-                  height: '44px',
+                  width: '48px',
+                  height: '48px',
                   borderRadius: '50%',
                   border: '1px solid rgba(255, 245, 220, 0.65)',
                   display: 'flex',
@@ -321,10 +307,13 @@ export default function EnvelopeIntro({ onComplete }) {
                 <span
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     fontWeight: '700',
                     color: '#3d1c05',
                     letterSpacing: '1px',
+                    whiteSpace: 'nowrap',
+                    lineHeight: '1',
+                    textAlign: 'center',
                     textShadow: '0 1px 1px rgba(255, 255, 255, 0.5)',
                   }}
                 >

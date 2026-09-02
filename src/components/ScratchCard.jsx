@@ -44,9 +44,9 @@ export default function ScratchCard({ children, width = 300, height = 95, onComp
     ctx.lineWidth = 1;
     ctx.strokeRect(9, 9, width - 18, height - 18);
 
-    // Clean luxury typography: "SCRATCH TO REVEAL"
+    // Clean luxury typography: "SCRATCH TO REVEAL DATE"
     ctx.fillStyle = '#3d1c05';
-    ctx.font = '600 11px Montserrat, sans-serif';
+    ctx.font = '600 12.5px Montserrat, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.shadowColor = 'rgba(255, 255, 255, 0.7)';
