@@ -68,7 +68,7 @@ export default function HeroSlide() {
         cursor: 'pointer',
       }}
     >
-      {/* Edge-to-Edge Full Video - Fully visible without side cropping */}
+      {/* Edge-to-Edge Fullscreen Video */}
       <video
         ref={videoRef}
         autoPlay
@@ -84,8 +84,8 @@ export default function HeroSlide() {
           height: '100%',
           maxWidth: '100%',
           maxHeight: '100%',
-          objectFit: 'contain',
-          objectPosition: 'center center',
+          objectFit: 'cover',
+          objectPosition: 'center 45%',
           zIndex: 1,
         }}
       >
