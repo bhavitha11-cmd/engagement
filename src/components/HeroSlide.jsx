@@ -64,11 +64,11 @@ export default function HeroSlide() {
         alignItems: 'center',
         justifyContent: 'flex-end',
         overflow: 'hidden',
-        background: '#fdf8f0',
+        background: '#f7f5e9',
         cursor: 'pointer',
       }}
     >
-      {/* Edge-to-Edge Fullscreen Video */}
+      {/* Edge-to-Edge Full Video - Fully visible without side cropping */}
       <video
         ref={videoRef}
         autoPlay
@@ -84,7 +84,7 @@ export default function HeroSlide() {
           height: '100%',
           maxWidth: '100%',
           maxHeight: '100%',
-          objectFit: 'cover',
+          objectFit: 'contain',
           objectPosition: 'center center',
           zIndex: 1,
         }}
