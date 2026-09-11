@@ -64,11 +64,26 @@ export default function HeroSlide() {
         alignItems: 'center',
         justifyContent: 'flex-end',
         overflow: 'hidden',
-        background: '#f7f5e9',
+        background: '#fdf8f0',
         cursor: 'pointer',
       }}
     >
-      {/* Edge-to-Edge Fullscreen Video */}
+      {/* Seamless Background Template - Fills full screen */}
+      <img
+        src="/hero_bg.png"
+        alt=""
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center center',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Main Video Overlay - Fits 100% uncropped */}
       <video
         ref={videoRef}
         autoPlay
@@ -78,14 +93,11 @@ export default function HeroSlide() {
         onTimeUpdate={handleTimeUpdate}
         style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
+          inset: 0,
           width: '100%',
           height: '100%',
-          maxWidth: '100%',
-          maxHeight: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center 45%',
+          objectFit: 'contain',
+          objectPosition: 'center center',
           zIndex: 1,
         }}
       >
