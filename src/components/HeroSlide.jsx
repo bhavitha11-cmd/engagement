@@ -55,7 +55,10 @@ export default function HeroSlide() {
         position: 'relative',
         height: '100dvh',
         minHeight: '100svh',
+        maxHeight: '100dvh',
         width: '100%',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -75,9 +78,12 @@ export default function HeroSlide() {
         onTimeUpdate={handleTimeUpdate}
         style={{
           position: 'absolute',
-          inset: 0,
+          top: 0,
+          left: 0,
           width: '100%',
           height: '100%',
+          maxWidth: '100%',
+          maxHeight: '100%',
           objectFit: 'cover',
           objectPosition: 'center center',
           zIndex: 1,
@@ -106,6 +112,7 @@ export default function HeroSlide() {
           borderRadius: '24px',
           border: '1px solid rgba(255, 255, 255, 0.25)',
           boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+          maxWidth: 'calc(100% - 32px)',
         }}
       >
         <span
