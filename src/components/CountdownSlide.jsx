@@ -37,10 +37,9 @@ export default function CountdownSlide() {
     >
       {/* Lotus & Mandala Theme Background */}
       <img
-        src="/lotus_bg.jpg"
+        src="/lotus_bg.webp"
         alt="Lotus Theme Background"
-        loading="eager"
-        fetchPriority="high"
+        loading="lazy"
         decoding="async"
         style={{
           position: 'absolute',

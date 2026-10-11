@@ -58,7 +58,7 @@ export default function HeroSlide() {
     >
       {/* Seamless Background Template - Fills full screen */}
       <img
-        src="/hero_bg.png"
+        src="/hero_bg.webp"
         alt=""
         style={{
           position: 'absolute',

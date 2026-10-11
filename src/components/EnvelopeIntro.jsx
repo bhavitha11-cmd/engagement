@@ -129,7 +129,7 @@ export default function EnvelopeIntro({ onComplete }) {
         }}
       >
         <img
-          src="/envelope_header.png"
+          src="/envelope_header.webp"
           alt="॥ శ్రీరస్తు ॥"
           style={{
             height: '36px',
@@ -171,7 +171,7 @@ export default function EnvelopeIntro({ onComplete }) {
         }}
       >
         <img
-          src="/envelope_card.png"
+          src="/envelope_card.webp"
           alt="Royal Wedding Envelope - Bhavitha & Raja"
           style={{
             width: '100%',

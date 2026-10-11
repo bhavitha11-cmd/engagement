@@ -55,7 +55,7 @@ export default function FinalSlide() {
     >
       {/* Clean Mandala Theme Background */}
       <img
-        src="/mandala_bg.jpg"
+        src="/mandala_bg.webp"
         alt="Mandala Background"
         loading="lazy"
         decoding="async"
