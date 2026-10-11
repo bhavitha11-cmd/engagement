@@ -6,16 +6,34 @@ export default function FinalSlide() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleGoogleCalendar = () => {
-    const title = encodeURIComponent('Engagement Ceremony: Bhavitha & Raja');
-    const details = encodeURIComponent(
-      'With the blessings of our elders and families, we warmly invite you to celebrate the engagement ceremony of Bhavitha & Raja.\n\nDate: 15 November 2026\nTime: 9:55 AM onwards\nLocation: Kothapalli, Andhra Pradesh, India'
-    );
-    const location = encodeURIComponent('Kothapalli, Andhra Pradesh, India');
-    // 15 November 2026, 9:55 AM IST to 1:30 PM IST (UTC 04:25 to 08:00)
-    const dates = '20261115T042500Z/20261115T080000Z';
-    const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
-    window.open(googleUrl, '_blank', 'noopener,noreferrer');
+  const title = encodeURIComponent('Engagement Ceremony: Bhavitha & Raja');
+  const details = encodeURIComponent(
+    'With the blessings of our elders and families, we warmly invite you to celebrate the engagement ceremony of Bhavitha & Raja.\n\nDate: 15 November 2026\nTime: 9:55 AM onwards\nLocation: Kothapalli, Andhra Pradesh, India'
+  );
+  const location = encodeURIComponent('Kothapalli, Andhra Pradesh, India');
+  // 15 November 2026, 9:55 AM IST to 1:30 PM IST (UTC 04:25 to 08:00)
+  const dates = '20261115T042500Z/20261115T080000Z';
+  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+
+  const handleAddToCalendar = () => {
+    // Detect iPhone / iPad / iPod
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    if (isIOS) {
+      // iOS devices: direct navigation to .ics opens native Apple Calendar
+      window.location.href = '/invite.ics';
+    } else {
+      // Android / PC / other devices: open Google Calendar
+      const link = document.createElement('a');
+      link.href = googleUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   return (
@@ -90,7 +108,6 @@ export default function FinalSlide() {
             letterSpacing: '3px',
           }}
         >
-          B & R
         </motion.div>
 
         {/* Heading */}
@@ -182,14 +199,14 @@ export default function FinalSlide() {
             Save this auspicious occasion to your device
           </span>
 
-          {/* Single Google Calendar Button */}
+          {/* Single Universal Add to Calendar Button */}
           <button
-            onClick={handleGoogleCalendar}
+            onClick={handleAddToCalendar}
             className="btn-gold"
             style={{
               width: '100%',
-              fontSize: '0.75rem',
-              padding: '12px 18px',
+              fontSize: '0.78rem',
+              padding: '13px 20px',
               borderRadius: '12px',
               letterSpacing: '1.5px',
               display: 'flex',
@@ -199,7 +216,7 @@ export default function FinalSlide() {
               cursor: 'pointer',
             }}
           >
-            <span>📅</span> Add to Google Calendar
+            <span>📅</span> Add to Calendar
           </button>
         </motion.div>
 

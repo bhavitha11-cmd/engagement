@@ -9,7 +9,7 @@ export default function EnvelopeIntro({ onComplete }) {
     setOpened(true);
     setTimeout(() => {
       onComplete();
-    }, 1400);
+    }, 1250);
   };
 
   return (
@@ -17,40 +17,40 @@ export default function EnvelopeIntro({ onComplete }) {
       onClick={handleTap}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 1.04 }}
+      exit={{ opacity: 0, scale: 1.05 }}
       transition={{ duration: 0.6 }}
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'radial-gradient(ellipse at center, #fffdfa 0%, #f6eee2 60%, #e9decb 100%)',
+        background: 'radial-gradient(ellipse at 50% 45%, #fffdfa 0%, #fbf5ea 40%, #f4ebd9 75%, #eae0cb 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
         zIndex: 99999,
-        padding: '24px',
+        padding: '24px 16px',
         overflow: 'hidden',
         userSelect: 'none',
         WebkitTapHighlightColor: 'transparent',
       }}
     >
-      {/* Soft Ambient Golden Dust in Background */}
-      {[...Array(5)].map((_, i) => (
+      {/* Soft Ambient Golden Dust floating in background */}
+      {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
           initial={{
-            opacity: 0.15,
+            opacity: 0.2,
             y: Math.random() * 200 - 100,
             x: Math.random() * 260 - 130,
           }}
           animate={{
-            opacity: [0.15, 0.5, 0.15],
-            y: ['-8px', '8px', '-8px'],
+            opacity: [0.2, 0.65, 0.2],
+            y: ['-10px', '10px', '-10px'],
           }}
           transition={{
             repeat: Infinity,
-            duration: 4 + i,
+            duration: 3.5 + i * 0.8,
             ease: 'easeInOut',
           }}
           style={{
@@ -59,306 +59,201 @@ export default function EnvelopeIntro({ onComplete }) {
             height: '4px',
             borderRadius: '50%',
             background: 'var(--gold)',
-            boxShadow: '0 0 8px rgba(201, 148, 42, 0.4)',
+            boxShadow: '0 0 10px rgba(201, 148, 42, 0.5)',
             pointerEvents: 'none',
           }}
         />
       ))}
 
-      {/* Header / Title */}
-      <motion.div
-        animate={opened ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        style={{ textAlign: 'center', marginBottom: '32px' }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1rem',
-            letterSpacing: '3px',
-            color: 'var(--gold-dark)',
-            fontWeight: '600',
-            display: 'block',
-            marginBottom: '8px',
-          }}
-        >
-          ॥ శ్రీరస్తు ॥
-        </span>
-        <div
-          style={{
-            width: '45px',
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
-            margin: '0 auto',
-          }}
-        />
-      </motion.div>
+      {/* Golden Burst Particles on Tap */}
+      <AnimatePresence>
+        {opened && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '1px',
+              height: '1px',
+              pointerEvents: 'none',
+              zIndex: 10,
+            }}
+          >
+            {[...Array(16)].map((_, i) => {
+              const angle = (i / 16) * 2 * Math.PI;
+              const distance = 80 + (i % 3) * 45;
+              const tx = Math.cos(angle) * distance;
+              const ty = Math.sin(angle) * distance;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ x: 0, y: 0, scale: 0.4, opacity: 1 }}
+                  animate={{
+                    x: tx,
+                    y: ty,
+                    scale: [0.4, 1.4, 0],
+                    opacity: [1, 0.85, 0],
+                  }}
+                  transition={{ duration: 1.0, ease: 'easeOut' }}
+                  style={{
+                    position: 'absolute',
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, #fff7d6 0%, #d4a037 70%, #875c12 100%)',
+                    boxShadow: '0 0 12px rgba(212, 160, 55, 0.9)',
+                  }}
+                />
+              );
+            })}
+          </div>
+        )}
+      </AnimatePresence>
 
-      {/* 3D Interactive Royal Envelope Container */}
+      {/* Top Header: Sacred Invocation ॥ శ్రీరస్తు ॥ */}
       <motion.div
         animate={
           opened
-            ? { scale: [1, 1.02, 1.06], opacity: [1, 1, 0] }
-            : { y: [0, -6, 0] }
+            ? { opacity: 0, y: -20, transition: { duration: 0.45 } }
+            : { opacity: 1, y: 0 }
         }
-        transition={
-          opened
-            ? { duration: 1.3, ease: 'easeInOut' }
-            : { repeat: Infinity, duration: 3.2, ease: 'easeInOut' }
-        }
+        transition={{ duration: 0.5 }}
         style={{
-          position: 'relative',
-          width: '320px',
-          height: '210px',
-          perspective: '1000px',
+          textAlign: 'center',
+          marginBottom: '28px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        {/* Envelope Outer Shadow */}
-        <div
+        <img
+          src="/envelope_header.png"
+          alt="॥ శ్రీరస్తు ॥"
           style={{
-            position: 'absolute',
-            inset: '10px 15px -10px 15px',
-            background: 'rgba(74, 34, 8, 0.15)',
-            filter: 'blur(16px)',
-            borderRadius: '16px',
-            zIndex: 0,
+            height: '36px',
+            maxWidth: '180px',
+            objectFit: 'contain',
+            display: 'block',
+            filter: 'drop-shadow(0 1px 3px rgba(74, 34, 8, 0.12))',
           }}
         />
-
-        {/* Envelope Back Base */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(145deg, #fdf9f2 0%, #f4ebd9 100%)',
-            borderRadius: '14px',
-            border: '1.5px solid rgba(201, 148, 42, 0.35)',
-            boxShadow: 'inset 0 0 20px rgba(201, 148, 42, 0.08)',
-            zIndex: 1,
-          }}
-        />
-
-        {/* Inner Card that slides out when opened */}
-        <motion.div
-          animate={
-            opened
-              ? { y: -95, opacity: 1 }
-              : { y: 0, opacity: 0.95 }
-          }
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            position: 'absolute',
-            inset: '12px 16px',
-            background: 'linear-gradient(135deg, #fffdfa 0%, #f8efe3 100%)',
-            borderRadius: '10px',
-            border: '1px solid rgba(201, 148, 42, 0.45)',
-            boxShadow: '0 4px 15px rgba(74, 34, 8, 0.06)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '16px',
-            textAlign: 'center',
-            zIndex: 2,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.55rem',
-              letterSpacing: '2.5px',
-              color: 'var(--gold-dark)',
-              textTransform: 'uppercase',
-              fontWeight: '600',
-              marginBottom: '4px',
-            }}
-          >
-            The Engagement of
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-script)',
-              fontSize: '2.1rem',
-              color: 'var(--text-dark)',
-              lineHeight: '1.1',
-            }}
-          >
-            Bhavitha & Raja
-          </span>
-        </motion.div>
-
-        {/* Envelope Pocket (Front bottom triangles) */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            borderRadius: '14px',
-            overflow: 'hidden',
-            zIndex: 3,
-            pointerEvents: 'none',
-          }}
-        >
-          {/* Left Pocket Flap */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: 0,
-              height: 0,
-              borderStyle: 'solid',
-              borderWidth: '105px 0 105px 160px',
-              borderColor: 'transparent transparent transparent #ede2d2',
-              filter: 'drop-shadow(2px 0 4px rgba(74, 34, 8, 0.04))',
-            }}
-          />
-          {/* Right Pocket Flap */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              right: 0,
-              width: 0,
-              height: 0,
-              borderStyle: 'solid',
-              borderWidth: '105px 160px 105px 0',
-              borderColor: 'transparent #ede2d2 transparent transparent',
-              filter: 'drop-shadow(-2px 0 4px rgba(74, 34, 8, 0.04))',
-            }}
-          />
-          {/* Bottom Pocket Flap */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: 0,
-              height: 0,
-              borderStyle: 'solid',
-              borderWidth: '0 160px 115px 160px',
-              borderColor: 'transparent transparent #f7eddc transparent',
-              filter: 'drop-shadow(0 -3px 8px rgba(74, 34, 8, 0.06))',
-            }}
-          />
-        </div>
-
-        {/* Envelope Top Triangular Flap (Folds Open in 3D) */}
-        <motion.div
-          animate={
-            opened
-              ? { rotateX: 180, zIndex: 1 }
-              : { rotateX: 0, zIndex: 4 }
-          }
-          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: 0,
-            height: 0,
-            borderStyle: 'solid',
-            borderWidth: '115px 160px 0 160px',
-            borderColor: '#f3e6d5 transparent transparent transparent',
-            transformOrigin: 'top center',
-            filter: 'drop-shadow(0 4px 8px rgba(74, 34, 8, 0.1))',
-          }}
-        />
-
-        {/* Royal Gold Wax Seal */}
-        <AnimatePresence>
-          {!opened && (
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: [1, 1.04, 1] }}
-              exit={{ scale: 0.2, opacity: 0 }}
-              transition={{
-                scale: { repeat: Infinity, duration: 2.5, ease: 'easeInOut' },
-                exit: { duration: 0.3 },
-              }}
-              style={{
-                position: 'absolute',
-                top: '54%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '60px',
-                height: '60px',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle at 35% 35%, #fff0b8 0%, #c9942a 55%, #7a4e00 100%)',
-                border: '1.5px solid rgba(255, 255, 255, 0.45)',
-                boxShadow: '0 6px 20px rgba(74, 34, 8, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.25)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 5,
-              }}
-            >
-              {/* Inner Embossed Ring */}
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '50%',
-                  border: '1px solid rgba(255, 245, 220, 0.65)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: '0.78rem',
-                    fontWeight: '700',
-                    color: '#3d1c05',
-                    letterSpacing: '1px',
-                    whiteSpace: 'nowrap',
-                    lineHeight: '1',
-                    textAlign: 'center',
-                    textShadow: '0 1px 1px rgba(255, 255, 255, 0.5)',
-                  }}
-                >
-                  B & R
-                </span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.div>
 
-      {/* Tap Instruction Button */}
+      {/* Centerpiece: Royal Luxury Ivory Envelope */}
       <motion.div
         animate={
           opened
-            ? { opacity: 0, y: 15 }
-            : { opacity: [0.75, 1, 0.75], y: [0, 3, 0] }
+            ? {
+                scale: [1, 1.04, 1.1],
+                opacity: [1, 1, 0],
+                y: -18,
+              }
+            : {
+                y: [0, -6, 0],
+              }
         }
         transition={
           opened
-            ? { duration: 0.3 }
-            : { repeat: Infinity, duration: 2.2, ease: 'easeInOut' }
+            ? { duration: 1.15, ease: [0.38, 0.05, 0.22, 1] }
+            : { repeat: Infinity, duration: 3.6, ease: 'easeInOut' }
         }
+        whileHover={{ scale: opened ? 1 : 1.015 }}
+        whileTap={{ scale: 0.985 }}
         style={{
-          marginTop: '42px',
+          position: 'relative',
+          width: '100%',
+          maxWidth: '430px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <img
+          src="/envelope_card.png"
+          alt="Royal Wedding Envelope - Bhavitha & Raja"
+          style={{
+            width: '100%',
+            height: 'auto',
+            maxHeight: '48vh',
+            objectFit: 'contain',
+            display: 'block',
+            pointerEvents: 'none',
+            filter: 'drop-shadow(0 16px 32px rgba(74, 34, 8, 0.14))',
+          }}
+        />
+
+        {/* Subtle radial golden glow over wax seal when hovering / idle */}
+        <motion.div
+          animate={
+            opened
+              ? { scale: [1, 2.4], opacity: [0.6, 0] }
+              : { opacity: [0.25, 0.65, 0.25], scale: [0.95, 1.08, 0.95] }
+          }
+          transition={
+            opened
+              ? { duration: 0.7 }
+              : { repeat: Infinity, duration: 2.8, ease: 'easeInOut' }
+          }
+          style={{
+            position: 'absolute',
+            top: '49%',
+            left: '52.6%',
+            transform: 'translate(-50%, -50%)',
+            width: '78px',
+            height: '78px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(255, 230, 140, 0.45) 0%, rgba(201, 148, 42, 0.2) 50%, transparent 70%)',
+            pointerEvents: 'none',
+          }}
+        />
+      </motion.div>
+
+      {/* Bottom Button: Tap to Open Invitation */}
+      <motion.div
+        animate={
+          opened
+            ? { opacity: 0, y: 15, transition: { duration: 0.35 } }
+            : {
+                opacity: [0.88, 1, 0.88],
+                y: [0, 3, 0],
+              }
+        }
+        transition={
+          opened
+            ? { duration: 0.35 }
+            : { repeat: Infinity, duration: 2.4, ease: 'easeInOut' }
+        }
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
+        style={{
+          marginTop: '36px',
           textAlign: 'center',
         }}
       >
         <div
           style={{
-            background: 'linear-gradient(135deg, rgba(201, 148, 42, 0.12) 0%, rgba(201, 148, 42, 0.04) 100%)',
-            border: '1px solid rgba(201, 148, 42, 0.3)',
-            padding: '10px 24px',
-            borderRadius: '24px',
-            backdropFilter: 'blur(4px)',
+            background: 'linear-gradient(135deg, rgba(255, 252, 245, 0.82) 0%, rgba(246, 238, 226, 0.6) 100%)',
+            border: '1.2px solid rgba(195, 150, 85, 0.48)',
+            padding: '11px 26px',
+            borderRadius: '999px',
+            boxShadow: '0 4px 16px rgba(74, 34, 8, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.8)',
+            backdropFilter: 'blur(6px)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <span
             style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.7rem',
-              letterSpacing: '3px',
-              color: 'var(--text-medium)',
+              fontSize: '0.68rem',
+              letterSpacing: '2.8px',
+              color: '#4a2c14',
               textTransform: 'uppercase',
               fontWeight: '600',
+              lineHeight: '1.2',
             }}
           >
             Tap to Open Invitation

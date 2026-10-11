@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bhavitha and Raja//Engagement Ceremony//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:engagement-bhavitha-raja-20261115@invitation
+DTSTAMP:20261011T120000Z
+DTSTART:20261115T042500Z
+DTEND:20261115T080000Z
+SUMMARY:Engagement Ceremony: Bhavitha & Raja
+DESCRIPTION:With the blessings of our elders and families\, we warmly invite you to celebrate the engagement ceremony of Bhavitha & Raja.\n\nDate: 15 November 2026\nTime: 9:55 AM onwards\nLocation: Kothapalli\, Andhra Pradesh\, India
+LOCATION:Kothapalli\, Andhra Pradesh\, India
+STATUS:CONFIRMED
+SEQUENCE:0
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Reminder: Bhavitha & Raja's Engagement Ceremony Tomorrow!
+END:VALARM
+END:VEVENT
+END:VCALENDAR
